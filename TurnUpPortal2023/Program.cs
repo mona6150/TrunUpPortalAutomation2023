@@ -6,7 +6,7 @@ using TurnUpPortal2023.pages;
 // Open chrome browser
 
 
-internal class Program
+public class Program
 {
     private static void Main(string[] args)
     {
@@ -26,11 +26,11 @@ internal class Program
         tmPageObj.EditTimeRecord(driver);
         tmPageObj.DeleteTimeRecord(driver);
 
-        
+
     }
 }
 
-//Edit time and material module
+
 
 
 

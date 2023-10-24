@@ -55,13 +55,43 @@ namespace TurnUpPortal2023.pages
                 Console.WriteLine("Time record has not been created");
             }
         }
-
+        //Test case - Edit Time record
         public void EditTimeRecord(IWebDriver driver)
         {
+            //Nabvigating to last page
+            IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+            goToLastPageButton.Click();
+
+            //Click edit button of last record
+            IWebElement editButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[5]/a[1]"));
+            editButton.Click();
+
+            //Change the code
+            IWebElement editCodeTextBox = driver.FindElement(By.Id("Code"));
+            editCodeTextBox.Clear();
+            editCodeTextBox.SendKeys("67890");
+
+            //Click on the save button
+            IWebElement editSaveButton = driver.FindElement(By.Id("SaveButton"));
+            editSaveButton.Click();
+
+            Thread.Sleep(5000);
+            //Check if the Time record has been updated successfully
+            IWebElement editGoToLastPageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+            editGoToLastPageButton.Click();
 
         }
+
+        //Test case - Delete the updated Time record
         public void DeleteTimeRecord(IWebDriver driver)
         {
+            //Nabvigaeting to last page
+            IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+            goToLastPageButton.Click();
+
+            //Click delete button of last record
+            IWebElement deleteButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr/td[5]/a[2]"));
+            deleteButton.Click();
 
         }
     }
