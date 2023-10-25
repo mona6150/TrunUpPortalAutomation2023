@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using TurnUpPortal2023.Utilities;
 
 namespace TurnUpPortal2023.pages
 {
@@ -12,6 +15,10 @@ namespace TurnUpPortal2023.pages
         //test case - create a new time record
         public void CreateTimeRecord(IWebDriver driver) 
         {
+            //WebDriverWait webDriverWait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            //webDriverWait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[@id=\"container\"]/p/a")));
+            Wait.WaitToBeClickable(driver, "XPath", "//*[@id=\"container\"]/p/a", 5);
+
             //click on the create new button
             IWebElement createNewButton = driver.FindElement(By.XPath("//*[@id=\"container\"]/p/a"));
             createNewButton.Click();
@@ -25,9 +32,11 @@ namespace TurnUpPortal2023.pages
 
             //Enter code
             IWebElement codeTextBox = driver.FindElement(By.Id("Code"));
+            Wait.WaitToBeClickable(driver, "Id", "Code", 7);
             codeTextBox.SendKeys("September 2023");
-
+              
             //Enter Description 
+            Wait.WaitToBeVisible(driver, "Id", "Description", 7);
             IWebElement descriptionTextbox = driver.FindElement(By.Id("Description"));
             descriptionTextbox.SendKeys("Description for September 2023");
 
@@ -46,14 +55,16 @@ namespace TurnUpPortal2023.pages
             goToLastPageButton.Click();
 
             IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr/td[1]"));
-            if (newCode.Text == "September 2023")
-            {
-                Console.WriteLine("New time record has been created successfully");
-            }
-            else
-            {
-                Console.WriteLine("Time record has not been created");
-            }
+            //if (newCode.Text == "September 2023")
+            //{
+            //    Assert.Pass("New time record has been created successfully");
+            //}
+            //else
+            //{
+            //    Assert.Fail("Time record has not been created");
+            //}
+
+            Assert.That(newCode.Text == "September 2023", "Time Record has not been created");
         }
         //Test case - Edit Time record
         public void EditTimeRecord(IWebDriver driver)
