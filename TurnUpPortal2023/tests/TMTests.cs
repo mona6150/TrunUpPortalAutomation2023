@@ -13,7 +13,9 @@ namespace TurnUpPortal2023.tests
 {
     [TestFixture]
     public class TMTests : CommonDriver
+
     {
+       
         [SetUp]
         public void SetUpTM()
         {
@@ -23,8 +25,7 @@ namespace TurnUpPortal2023.tests
             //LoginPage page object initialitaion and definition
             LoginPage loginPageObj = new LoginPage();
             loginPageObj.LoginActions(driver);
-
-            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+  
 
             //HomePage page object initialitaion and definition
             HomePage homePageObj = new HomePage();
@@ -32,25 +33,25 @@ namespace TurnUpPortal2023.tests
 
         }
 
-        [Test]
+        [Test, Order(1), Description("This test creates a new time record with valid data")]
         public void TestCreatTimerecord()
         {
             //TMPage page object initialitaion and definition
             TMPage tmPageObj = new TMPage();
-            tmPageObj.CreateTimeRecord(driver);
+            tmPageObj.CreatTimeRecord(driver);
         }
 
-        [Test]
+        [Test, Order(2), Description("This test updates an existing time record with valid data")]
         public void TestEditTimerecord()
         {
             TMPage tmPageObj = new TMPage();
             tmPageObj.EditTimeRecord(driver);
         }
 
-        [Test]
+        [Test, Order(3), Description("This test Deletes time record.")] 
         public void TestDeleteTimerecord()
         {
-            TMPage tmPageObj = new TMPage();
+            TMPage tmPageObj = new TMPage(); 
             tmPageObj.DeleteTimeRecord(driver);
         }
 

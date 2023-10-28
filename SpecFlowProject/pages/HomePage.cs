@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace TurnUpPortal2023.pages
+namespace SpecFlowProject.pages
 {
     public class HomePage
     {

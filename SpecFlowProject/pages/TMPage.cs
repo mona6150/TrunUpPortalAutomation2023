@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using TurnUpPortal2023.Utilities;
+using SpecFlowProject.Utilities;
 
-namespace TurnUpPortal2023.pages
+namespace SpecFlowProject.pages
 {
     public class TMPage
     {
@@ -54,17 +54,24 @@ namespace TurnUpPortal2023.pages
             goToLastPageButton.Click();
 
             IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
-            //if (newCode.Text == "TurnUpPortal2023")
-            //{
-            //    Assert.Pass("New time record has been created successfully");
-            //}
-            //else
-            //{
-            //    Assert.Fail("Time record has not been created");
-            //}
+            
 
             Assert.That(newCode.Text == "TurnUpPortal2023", "Time Record has not been created");
         }
+
+        public void AssertCreateTMRecord(IWebDriver driver)
+        {
+            // check if a new time record has been created successfully
+            IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
+            goToLastPageButton.Click();
+
+            IWebElement newCode = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr[last()]/td[1]"));
+
+
+            Assert.That(newCode.Text == "TurnUpPortal2023", "Time Record has not been created");
+        }
+        
+
         //Test case - Edit Time record
         public void EditTimeRecord(IWebDriver driver)
         {
@@ -86,11 +93,19 @@ namespace TurnUpPortal2023.pages
             editSaveButton.Click();
 
             Thread.Sleep(5000);
+           
+
+        }
+
+        public void AssertEditTMRecord(IWebDriver driver)
+        {
             //Check if the Time record has been updated successfully
             IWebElement editGoToLastPageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
             editGoToLastPageButton.Click();
 
         }
+
+
 
         //Test case - Delete the updated Time record
         public void DeleteTimeRecord(IWebDriver driver)
@@ -98,6 +113,11 @@ namespace TurnUpPortal2023.pages
             //Navigating to last page
             IWebElement goToLastPageButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[4]/a[4]/span"));
             goToLastPageButton.Click();
+
+            
+        }
+        public void AssertDeleteTMRecord(IWebDriver driver)
+        {
 
             //Click delete button of last record
             IWebElement deleteButton = driver.FindElement(By.XPath("//*[@id=\"tmsGrid\"]/div[3]/table/tbody/tr/td[5]/a[2]"));
